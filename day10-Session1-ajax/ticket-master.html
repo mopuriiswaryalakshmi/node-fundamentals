@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1>Ticket Master</h1>
+        <h2>Listing TIckets - <span id="count"></span></h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Priority</th>
+                    <th>Message</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+        </table>
+        
+<br/><br/>
+        <progress value="" max="100" id="progress"></progress>
+<br/><br/>
+        <form id="ticketForm">
+
+                <label for="name">
+                    Name
+                </label>
+                <input type="text" name="name" id="name" /> <br/>
+    
+                <label for="department">
+                    Department
+                </label>
+                <select id="department">
+                    <option value=""> Select Department</option>
+                    <option value="Technical">Technical</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Hr"> Hr </option>
+                </select> <br/>
+    
+                <label> Priority </label>
+                <input type="radio" id="high" value="High" name="priority" /> <label for="high"> High </label>
+                <input type="radio" id="medium" value="Medium" name="priority" /> <label for="medium"> Medium </label>
+                <input type="radio" id="low" value="Low" name="priority" /> <label for="low"> Low </label>
+                <br/>
+    
+                <label for="message"> Message </label>
+                <textarea id="message" name="message"> </textarea>
+                <br/>
+    
+                <!-- <label for="status"> Status </label>
+                <input type="checkbox" id="status" name="status"> -->
+                <br/>
+
+                <input type="submit" value="submit" /> 
+                <input type="reset" value="reset" />
+            </form>
+
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
+

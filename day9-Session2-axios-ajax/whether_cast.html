@@ -1,0 +1,56 @@
+<html>
+    <head>
+            <script src="./js/axios.min.js"></script>
+    </head>
+    <body>
+        <h2>Dark Sky Weather Updates</h2>
+
+        <button id="get_location">Get My Location</button>
+        <p >Latitude <span id="lat"></span></p>
+        <p >Longitude <span id="long"></span></p>
+        <p>current Temperature is: <span id="current_tem"></span></p>
+        
+        <!-- /google/maps-apis/overview?project=spry-bus-214003&folder=&organizationId=931749101990 -->
+
+    <script>
+        var crd;
+        var crd_lat;
+        var crd_long;
+        var get_locationHandle = doc
+        ument.getElementById("get_location"); 
+        var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
+function success(pos) {
+  crd = pos.coords;
+ document.getElementById("lat").innerHTML = crd.latitude;
+ document.getElementById("long").innerHTML = crd.longitude;
+  console.log('Your current position is:');
+  console.log(`Latitude : ${crd.latitude}`);
+  console.log(`Longitude: ${crd.longitude}`);
+  console.log(`More or less ${crd.accuracy} meters.`);
+        
+}
+
+function error(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+  get_locationHandle.addEventListener('click',function(e){
+    var url = `https://api.darksky.net/forecast/3be1349a8acbf9e10f83d17be4d19b0e/${crd.latitude},${crd.longitude}`;
+        axios.get(url).then(function(response){ 
+                    var result = response.data;
+        document.getElementById("current_tem").innerHTML = result.currently.apparentTemperature;
+        }).catch(function(err){
+            console.log(err);
+        });
+  })
+
+    </script>
+    </body>
+</html>

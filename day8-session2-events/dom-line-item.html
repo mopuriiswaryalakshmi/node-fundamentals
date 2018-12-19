@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Line Item </title>
+    </head>
+    <body>
+        <h2> Line Items </h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Name </th>
+                    <th> Price </th>
+                    <th> Quantity </th>
+                    <th> Total </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> 1 </td>
+                    <td> Marker </td>
+                    <td><span id="price">12</span></td>
+                    <td><button id="down"> - </button><span id="quantity"> 1 </span><button id="up"> + </button></td>
+                    <td><span id="total" > 12 </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+
+    <script>
+        var quantity = 1;
+        var downHandle = document.getElementById('down');
+        var upHandle = document.getElementById('up');
+        var totalHandle = document.getElementById('total');
+        var quantityHandle = document.getElementById('quantity');
+        var priceHandle = document.getElementById('price');
+        downHandle.addEventListener('click',function(){    
+            var quantity = parseInt(quantityHandle.innerText);
+            var price = parseInt(priceHandle.innerText);
+            quantity--;
+            quantityHandle.innerText = quantity;
+            totalHandle.innerText = quantity * price;     
+        },false);
+
+        upHandle.addEventListener('click',function(){      
+            var quantity = parseInt(quantityHandle.innerText);
+            var price = parseInt(priceHandle.innerText);
+            quantity++;
+            quantityHandle.innerText = quantity;
+            totalHandle.innerText = quantity * price;
+        },false);
+
+    </script>
+</html>

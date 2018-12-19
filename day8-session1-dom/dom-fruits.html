@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Listing Items </title>
+    </head>
+    <body>
+        <div id="root">
+            <h2>Listing Fruits - <span id="count"></span></h2>
+            <ul id="list">
+
+            </ul>
+        </div>
+        <script>
+            var fruits = ['apple','watermelon','mango','strawberry'];
+            var fruits = fruits.sort();
+            var countHandle = document.getElementById('count');
+            var listHandle = document.getElementById('list');
+            countHandle.innerText = fruits.length;
+            fruits.forEach(function(fruit){
+           var li =  document.createElement('li');
+           var text = document.createTextNode(fruit);
+           li.appendChild(text);
+           listHandle.appendChild(li);
+            });
+        </script>
+    </body>
+</html>

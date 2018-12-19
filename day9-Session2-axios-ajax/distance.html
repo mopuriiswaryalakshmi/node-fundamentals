@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+        <script src="./js/axios.min.js"></script>
+    </head>
+    <body>
+    <!-- //CORS -> Allow control  -->
+        <div id="root">
+            <h2>Determine Distance between 2 places</h2> 
+            <form id="myForm">
+                <label for="source">Source</label>
+                <input type="text" name="source" id="source" />
+                <br/>
+                <label for="destination">Desctination</label>
+                <input type="text" name="destination" id="destination" /><br/>
+
+                <input type="submit" value="find distance" />
+            </form>
+            <h2>Output</h2>
+            <!-- <p>The distance between banglore and mysore is 150 kms and it takes 3hrs 30 mins to travel</p> -->
+            <p>The distance between banglore and mysore is <span id="distance"></span> and it takes <span id="duration"></span> to travel</p>
+        </div>
+        
+        <script>
+            var myFormHandle = document.getElementById('myForm');
+            var sourceHandle = document.getElementById('source');
+            var destinationHandle = document.getElementById('destination');
+
+            myFormHandle.addEventListener('submit',function(e){
+                e.preventDefault();
+                var url =`https://maps.googleapis.com/maps/api/distancematrix/json?origins=${sourceHandle.value}&destinations=${destinationHandle.value}&departure_time=now&key=AIzaSyA9ucRErmbgXAaCr976KtcW3MKV0QI7HyA`;
+
+                axios.get(url).then(function(response){ 
+                    var result = response.data;
+                    console.log(result);
+                    console.log("Output-----------");
+                    console.log(result.rows[0].elements[0].distance.text);
+                    console.log(result.rows[0].elements[0].duration.text);
+                    document.getElementById('distance').innerHTML = result.rows[0].elements[0].distance.text;
+                    document.getElementById('duration').innerHTML = result.rows[0].elements[0].duration.text;
+                    // console.log(result.rows[0].element[0][distance].text);
+                    // console.log(result.rows[0][element][0][duration].text);
+                    myFormHandle.reset();                  
+                }).catch(function(err){
+                    console.log(err);
+                })
+            },false)
+
+        </script>
+    </body>
+</html>
+
+
+<!-- npm init -y -->
+<!-- live-server index.html -->
+<!-- live-server -->
+<!-- {destination_addresses: Array(1), origin_addresses: Array(1), rows: Array(1), status: "OK"}
+destination_addresses: Array(1)
+0: "Mysuru, Karnataka, India"
+length: 1
+__proto__: Array(0)
+origin_addresses: Array(1)
+0: "Bengaluru, Karnataka, India"
+length: 1
+__proto__: Array(0)
+rows: Array(1)
+0:
+elements: Array(1)
+0:
+distance:
+text: "150 km"
+value: 149884
+__proto__: Object
+duration:
+text: "3 hours 11 mins"
+value: 11444
+__proto__: Object
+duration_in_traffic: {text: "3 hours 19 mins", value: 11950}
+status: "OK"
+__proto__: Object
+length: 1
+__proto__: Array(0)
+__proto__: Object
+length: 1
+__proto__: Array(0)
+status: "OK"
+__proto__: Object -->

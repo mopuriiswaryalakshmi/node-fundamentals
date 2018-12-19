@@ -1,0 +1,38 @@
+<!DOCTTYPE>
+<html>
+    <head>
+        <title> Event Handlers </title>
+    </head>
+    <body>
+        <label> Name </label>
+        <input type="text"  id="name"><br/>
+
+        <label> Email </label>
+        <input type="email" id="email"><br/>
+
+        <a href="http://www.google.com" id="link" target="_blank">Google</a>
+
+        <script>
+            var textHandle = document.getElementById('name');
+            var linkHandle = document.getElementById('link');
+            textHandle.addEventListener('focus',function(){
+                console.log('you are inside text field');
+            },false)
+
+            textHandle.addEventListener('blur',function(){
+                console.log('value',textHandle.value);
+                if(textHandle.value = ''){
+                    console.log('This field is required');
+                }
+                console.log('you are outside text field');
+            },false);
+            textHandle.addEventListener('keyup',function(){
+                console.log(textHandle.value);
+            });
+            linkHandle.addEventListener('click',function(e){
+                console.log(e);
+                e.preventDefault();
+            })
+        </script>
+    </body>
+</html>

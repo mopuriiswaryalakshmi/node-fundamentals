@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Ajax Request
+        </title>
+    </head>
+    <body>
+        <button id="btn">Fetch Data</button>
+        <div id="root">
+            <!-- <ul>
+                <li>Ishwarya</li>
+            </ul> -->
+        </div>
+    <script>
+        var rootHandle = document.getElementById('root');
+        function fetchData(){
+            var xhr = new XMLHttpRequest();
+            console.log(xhr);
+            xhr.open('GET','https://jsonplaceholder.typicode.com/users'); //readyState =1;
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4 && xhr.status === 200){  
+                    var users = JSON.parse(xhr.responseText);
+                    console.log(typeof users);
+                    console.log(users);
+                    var ul = document.createElement('ul');
+                    users.forEach(function(user){
+                        var li = document.createElement('li');
+                        var text = document.createTextNode(user.name);
+                        li.appendChild(text);
+                        ul.appendChild(li);
+                    });
+                    rootHandle.appendChild(ul);
+                }
+            };
+            xhr.send();
+        };
+
+        document.getElementById('btn').addEventListener('click',function(){
+            fetchData();
+            rootHandle.innerHTML='';
+        })
+    </script>
+    </body>
+</html>

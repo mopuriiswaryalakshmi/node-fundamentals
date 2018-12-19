@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Header</title>
+    </head>
+    <body>
+        <div id="root">
+
+        </div>
+
+        <script>
+            var rootHandle = document.getElementById('root');
+            console.log(rootHandle);
+            var h2Tag = document.createElement('h2');
+            console.log(h2Tag);
+            var message = 'Hello Jayanagar';
+            var h2Text = document.createTextNode(message);
+            console.log(h2Text);
+
+            h2Tag.appendChild(h2Text);
+            console.log(h2Tag);
+
+            rootHandle.appendChild(h2Tag);
+        </script>
+    </body>
+</html>
+
+<!-- tag,attribute,children -->

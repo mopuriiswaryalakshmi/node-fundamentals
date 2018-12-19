@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS</title>
+    </head>
+    <body>
+        <script>
+            // alert("Hello World!!");
+            console.log('hello world!!');
+            // prompt is a method to execute js in html file
+            var name = prompt("Enter your name");
+            console.log('Welcome to the guess game ' + name);
+            //camelCase
+            var targetnumber = Math.rounnd(Math.random() * 100);
+            console.log(targetnumber);
+            var maxGuesses = 3;
+            var playerGuess = 0;
+            //var flag = false;
+            var min = 1;
+            var max = 100;
+
+            var guess = prompt('Guess my number');
+
+            while (playerGuess < maxGuesses){
+                console.log('chances left');
+                var guess = Number(prompt('Guess my nummber between' + min + '-' + max));
+                if (guess > targetnumber){
+                    console.log('OOPS!!! Your guess was high');
+                    max = guess;
+                }else if (guess < targetnumber){
+                    console.log('OOPS!!! Your guess was low');
+                }else if (guess == targetnumber){
+                    console.log('Good Job!' + name + 'You guessed my number');
+                    //falg = true;
+                    break;
+                }
+                //playerGuess = playerGuess +1;
+                playerGuess++;
+           
+            }
+
+            if(!flag){
+                console.log('Sorry you din\'t get my number,my number was' + targetnumber);
+            }
+
+
+
+            
+            //snakeCase - target_number
+            //pascalCase - TargetNumber -(defining classes)
+            //kebab case - target-number
+        </script>
+    </body>
+</html>
+
+<!-- Number is a premitive datatype  -===> hold value (we cannot perform any option on it) -->
+<!-- arrays are objects, we can store values,we can perform operations -->
+<!-- var n = Number(prompt('enter a number')) 
+    output:--  undefined 
+   > n
+   < 10
+   > n < 15
+   < true
+   > n+10
+   < 20
+-->
